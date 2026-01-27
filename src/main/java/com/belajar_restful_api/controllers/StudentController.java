@@ -20,8 +20,15 @@ public class StudentController {
     }
 
     @GetMapping(path = "allStudents")
-    public List<Student> getAllStudents() {
-        return this.studentService.getStudent();
+    public ResponseEntity<?> getAllStudents() {
+        try {
+            Response response = this.studentService.getStudent();
+            return ResponseEntity
+                    .status(response.getStatus())  // HTTP 201 Created
+                    .body(response);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
     }
 
     @PostMapping(path = "addStudent")

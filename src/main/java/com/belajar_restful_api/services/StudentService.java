@@ -35,8 +35,15 @@ public class StudentService {
         return  response;
     }
 
-    public List<Student> getStudent() {
-        return this.studentRepository.findAll();
+    public Response getStudent() {
+        List<Student> listStudent = this.studentRepository.findAll();
+
+        Response response = new Response();
+        response.setData(listStudent);
+        response.setStatus(HttpStatus.CREATED.value());
+        response.setMessage("Student created successfully");
+
+        return response;
     }
 
     public void deleteStudent(Long id) {
