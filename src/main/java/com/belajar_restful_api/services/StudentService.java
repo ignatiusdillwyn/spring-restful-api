@@ -46,15 +46,21 @@ public class StudentService {
         return response;
     }
 
-    public void deleteStudent(Long id) {
+    public Response deleteStudent(Long id) {
         boolean find = studentRepository.existsById(id);
         if (!find) {
             throw new IllegalStateException("student not find");
         }
         studentRepository.deleteById(id);
+
+        Response response = new Response();
+        response.setStatus(HttpStatus.CREATED.value());
+        response.setMessage("Student id " + id + " deleted successfully");
+
+        return response;
     }
 
-    public void updateStudent(Long id, String name, String email) {
+    public Response updateStudent(Long id, String name, String email) {
         Student student = studentRepository.findById(id).orElseThrow(
                 () -> new IllegalStateException("student not found")
         );
@@ -70,6 +76,17 @@ public class StudentService {
             }
             student.setEmail(email);
         }
+
+        Student studentUpdated = studentRepository.findById(id).orElseThrow(
+                () -> new IllegalStateException("student not found")
+        );
+
+        Response response = new Response();
+        response.setData(studentUpdated);
+        response.setStatus(HttpStatus.CREATED.value());
+        response.setMessage("Student id " + id + " updated successfully");
+
+        return response;
 
     }
 }

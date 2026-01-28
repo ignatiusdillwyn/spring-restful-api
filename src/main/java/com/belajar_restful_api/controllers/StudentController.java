@@ -45,15 +45,31 @@ public class StudentController {
     }
 
     @DeleteMapping(path = "delete/{studentId}")
-    public void deleteStudent(@PathVariable("studentId") Long id) {
-        studentService.deleteStudent(id);
+    public ResponseEntity<?> deleteStudent(@PathVariable("studentId") Long id) {
+        try {
+            Response response = studentService.deleteStudent(id);
+
+            return ResponseEntity
+                    .status(response.getStatus())  // HTTP 201 Created
+                    .body(response);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
     }
 
     @PutMapping(path = "updateStudent/{studentId}")
-    public void upDateStudent
+    public ResponseEntity<?> upDateStudent
             (@PathVariable("studentId") Long id,
              @RequestParam(required = false) String name,
              @RequestParam(required = false) String email) {
-        studentService.updateStudent(id, name, email);
+        try {
+            Response response = studentService.updateStudent(id, name, email);
+
+            return ResponseEntity
+                    .status(response.getStatus())  // HTTP 201 Created
+                    .body(response);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
     }
 }
