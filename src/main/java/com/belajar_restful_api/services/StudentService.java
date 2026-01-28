@@ -1,8 +1,7 @@
 package com.belajar_restful_api.services;
 import com.belajar_restful_api.models.Student;
 import com.belajar_restful_api.repository.StudentRepository;
-import com.belajar_restful_api.response.Response;
-import jakarta.persistence.*;
+import com.belajar_restful_api.dto.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.Objects;
-import java.util.Vector;
 
 @Service
 public class StudentService {

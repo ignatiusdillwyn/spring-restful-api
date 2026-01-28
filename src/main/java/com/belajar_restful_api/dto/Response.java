@@ -1,6 +1,5 @@
-package com.belajar_restful_api.response;
+package com.belajar_restful_api.dto;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
