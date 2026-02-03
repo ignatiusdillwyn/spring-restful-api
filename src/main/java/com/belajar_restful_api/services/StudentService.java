@@ -39,7 +39,7 @@ public class StudentService {
         Response response = new Response();
         response.setData(listStudent);
         response.setStatus(HttpStatus.CREATED.value());
-        response.setMessage("Student created successfully");
+        response.setMessage("Get All Students successfully");
 
         return response;
     }
