@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     @Override
     public AuthenticationResponse authentication(AuthenticationRequest request) {
 
+        //Pakai try catch biar pas bisa mapping error response di controllernya, bisa tambahin message error, dll
         try {
             //Proses autentikasi yang sesungguhnya, kalau ini gak ada ya loss aja, gak peduli email password bener atau salah
             authenticationManager.authenticate(
@@ -40,7 +42,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
                             request.getPassword()
                     )
             );
-        } catch (BadCredentialsException e) {
+        } catch (AuthenticationException e) {
             throw new RuntimeException("EMAIL_OR_PASSWORD_INVALID");
         }
 
