@@ -42,6 +42,7 @@ public class JwtService {
     public String generateToken(Map<String, Object> extractClaims, Users userDetails){
         System.out.println("Generate Token jwts builder " + userDetails.getUsername());
 
+        //Masukin data-data yang mau disimpang di dalam token
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", userDetails.getId());
         claims.put("email", userDetails.getEmail());
@@ -76,7 +77,7 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    private Claims extractAllClaims(String token){
+    public Claims extractAllClaims(String token){
         return Jwts
                 .parserBuilder()
                 .setSigningKey(getSignInKey())
