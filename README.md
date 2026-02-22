@@ -5,3 +5,6 @@ https://github.com/ManojLL/Spring_REST_API_Tutorial_with_PostgreSQL/blob/main/st
 
 response
 https://blog.fazztrack.com/membuat-rest-api-dengan-java-spring-boot-bagian-3-restful-api-dengan-spring-boot-56764147014d
+
+JWT
+https://medium.com/@dickanirwansyah/spring-security-jwt-1d1f572adb3d
